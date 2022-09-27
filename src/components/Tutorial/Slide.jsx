@@ -16,7 +16,11 @@ const style = StyleSheet.create(
         text:{
             color: 'white',
             fontSize: 40
-        }    
+        },
+        image: {
+            width: 300,
+            height: 300
+        } 
     }
 )
 
@@ -24,9 +28,7 @@ const Slide = ({image, text, right}) => {
   return (
     <View style={style.contaier}>
         <View style={style.titleContainer}>
-            <Text style={style.text}>
-                {text}
-            </Text>
+            <Image style={style.image} source={image} />
         </View>
     </View>
   )

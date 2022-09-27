@@ -2,16 +2,18 @@ import React from 'react'
 import { View, Dimensions, Pressable, Text, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
+const {width, height} = Dimensions.get('window');
+
 const Kajabi = (props)=> {
     const handdleNav = () => {
         props.navigation.navigate('Home');
     }
     return (
         <View
-            style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height-10}} 
+            style={{width, height, flex: 1}} 
         >
             <WebView 
-                style={{width: "100%", height: "100%", zIndex: 0}} 
+                style={{width, height, zIndex: 0}} 
                 originWhitelist={['*']} 
                 source={{uri: 'https://id.kajabi.com/login?state=hKFo2SAxZmJQeGxtb3VQTVAyNlB6aC1KenQ0bjVEaFBOZ3VjeaFupWxvZ2luo3RpZNkgb0hqLUZYaUVMWXdNNzhWUFJwX1FMZzE0aHMxaWhBTlijY2lk2SBMS3hndExFUmVuS3NHbURPN2kwMEdnd0NuMTN6dEZUMA&client=LKxgtLERenKsGmDO7i00GgwCn13ztFT0&protocol=oauth2&leeway=60&nonce=1ef7073e72ba540d75d3f1cb94c84a51&redirect_uri=https%3A%2F%2Fapp.kajabi.com%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid%20profile%20email'}} />
             <Pressable 

@@ -19,30 +19,53 @@ const style = StyleSheet.create({
         fontSize: 18
     },
     logo:{
-        width: "25%",
-        height: "20%",
-        resizeMode:  'stretch'
+        resizeMode: 'stretch'
     }
 });
 
 function Button(props) {
+  let width;
+  let height;
+  switch (props.text) {
+    case "Messages":
+      width = "25%";
+      height = "25%"
+      break;
+    case "Courses":
+      width = "30%";
+      height = "20%";
+      break;
+    case "Community":
+      width = "25%";
+      height = "25%";
+      break;
+    case "Portfolio":
+      width = "28%";
+      height = "22%";
+      break;
+    default:
+      break;
+    }
     const handdleNav = (nav) => {
-        props.nav.navigation.navigate(nav);
+      if (nav === "Community") {
+        nav = "Circle";
+      }
+      props.nav.navigation.navigate(nav);
     }
   return (
     <Pressable
-            onPress={()=>handdleNav(props.text)}
-            style={style.button}
-        >
-            <Image 
-                style={style.logo}
-                source={props.logo}
-            />
-            <Text style={style.buttonText}>
-                {props.text}
-            </Text>
-        </Pressable>
+      onPress={()=>handdleNav(props.text)}
+      style={style.button}
+    >
+      <Image 
+          style={[style.logo, { width, height}]}
+          source={props.logo}
+      />
+      <Text style={style.buttonText}>
+          {props.text}
+      </Text>
+    </Pressable>
   )
 };
 
-export default Button
+export default Button;

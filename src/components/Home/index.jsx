@@ -1,28 +1,35 @@
-import React, {useState} from 'react';
-import { View, Text, Pressable, StyleSheet, Image, Dimensions} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import CryptoLogo from '../../assets/img/crypto-icon.png';
 import messageIcon from '../../assets/img/message-icon.png';
 import portfolioIcon from '../../assets/img/portfolio-icon.png'
 import courseIcon from '../../assets/img/course-icon.png'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from './Button';
-import Tutorial from '../Tutorial';
 import WebView from 'react-native-webview';
 import SpiralCircle from '../../assets/img/spiral-circle.png';
+import { requestUserPermission, NotificationListener } from '../../utils/pushNotifications_helper';
 
 const {width, height} = Dimensions.get('window');
 
 const Home = (props)=> {
-    //const x = useVector();
-    const [tutorial, setTutorial] = useState(false)
+
+    const [user, setUser] = useState();
     const issetUser = async ()=>{
-        const user = await AsyncStorage.getItem('user');
-        console.log(user);
-        if (user !== null) {
-            setTutorial(true);
+        const currentUser = await AsyncStorage.getItem('user');
+        
+        if (user === null) {
+            return;
         }
+        setUser(JSON.parse(currentUser).name);
     }
     issetUser();
+
+    useEffect(()=>{
+        requestUserPermission();
+        NotificationListener(props.navigation);
+    },[])
+
     const jsCode = `
         setTimeout(
             ()=>{
@@ -33,7 +40,6 @@ const Home = (props)=> {
         ,200)
     `
     return (
-        tutorial?
         <View style={style.container}>   
             <View style={style.header}>
             <Image style={style.spiral} source={SpiralCircle}/>
@@ -42,7 +48,7 @@ const Home = (props)=> {
                         Hi, 
                     </Text>
                     <Text style={style.name}>
-                        Bernd
+                        Antoni
                     </Text>
                 </View>
                 <View style={style.bubblesContainer}>
@@ -54,17 +60,15 @@ const Home = (props)=> {
             </View>
             <View style={style.footer}>
                 <View style={style.row}>
-                    <Button nav={props} text="Circle" logo={messageIcon}/>
-                    <Button nav={props} text="Kajabi" logo={courseIcon}/>
+                    <Button nav={props} text="Messages" logo={messageIcon}/>
+                    <Button nav={props} text="Courses" logo={courseIcon}/>
                 </View>
                 <View style={style.row}>
-                    <Button nav={props} text="Circle" logo={CryptoLogo}/>
-                    <Button nav={props} text="Kajabi" logo={portfolioIcon}/>
+                    <Button nav={props} text="Community" logo={CryptoLogo}/>
+                    <Button nav={props} text="Portfolio" logo={portfolioIcon}/>
                 </View>
             </View>
         </View>
-        :
-        <Tutorial />
     );
 }
 

@@ -1,33 +1,23 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { View, Dimensions, Pressable, Text, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 const {width, height} = Dimensions.get('window');
 
-const Circle = (props)=> {
-    let uri = 'https://community.cryptochampion.de';
-    if (props.route.params) {
-        uri = props.route.params.uri;
-    }
-    const [url, setUrl] = useState(uri);
-    
+const Portfolio = (props)=> {
     const handdleNav = () => {
         props.navigation.navigate('Home');
     }
-    const handdleWebView = (e)=>{
-        setUrl(e.url);
-    } 
     return (
         <View
             style={{width, height, flex: 1}} 
         >
             <WebView 
-                onNavigationStateChange={(e)=> handdleWebView(e)}
-                style={{width: width, height: height, zIndex: 0}} 
+                style={{width, height, zIndex: 0}} 
                 originWhitelist={['*']} 
-                source={{uri: url}} />
+                source={{uri: 'http://coingecko.com'}} />
             <Pressable 
-                onPress={() => handdleNav()}
+                onPress={handdleNav}
                 style={style.floatingButton}>
                 <Text style={style.floatingText}>
                     +
@@ -58,4 +48,4 @@ const style = StyleSheet.create(
         }
     }
 );
-export default Circle;
+export default Portfolio;

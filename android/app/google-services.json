@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "473061483810",
+    "project_id": "crypto-champion-academy",
+    "storage_bucket": "crypto-champion-academy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473061483810:android:9756857bc8da381132317b",
+        "android_client_info": {
+          "package_name": "com.cryptoacademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473061483810-i0brbkcact6hbggm0q7gp8okgdnu1e47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh5NGUadJz_nMHXPiiAeNOHDK63WcBYrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473061483810-i0brbkcact6hbggm0q7gp8okgdnu1e47.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "473061483810-16eo6vig9pqsvu0q3iddsg2344qafdnb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cryptochampionacademy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

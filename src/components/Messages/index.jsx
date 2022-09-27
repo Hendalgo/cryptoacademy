@@ -2,18 +2,20 @@ import React from 'react'
 import { View, Dimensions, Pressable, Text, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
+const {width, height} = Dimensions.get('window');
+
 const Messages = (props)=> {
     const handdleNav = () => {
         props.navigation.navigate('Home');
     }
     return (
         <View
-            style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height-10}} 
+            style={{width, height, flex: 1}} 
         >
             <WebView 
-                style={{width: "100%", height: "100%", zIndex: 0}} 
+                style={{width, height, zIndex: 0}} 
                 originWhitelist={['*']} 
-                source={{uri: 'https://cryptoacademy.circle.so/messages'}} />
+                source={{uri: 'https://community.cryptochampion.de/messages'}} />
             <Pressable 
                 onPress={handdleNav}
                 style={style.floatingButton}>
