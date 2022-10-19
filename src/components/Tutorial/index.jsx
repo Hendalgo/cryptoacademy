@@ -6,6 +6,9 @@ import Slide from './Slide';
 import SubSlide from './SubSlide';
 import Dot from './Dot';
 import CryptoLogo from   '../../assets/logos/crypto-academy-logo.png';
+import messagesImg from   '../../assets/img/IMG-04.png';
+import notificationsImg from   '../../assets/img/IMG-05.png';
+import communityImg from   '../../assets/img/IMG-06.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width, height} = Dimensions.get("window");
@@ -13,16 +16,16 @@ const style = StyleSheet.create(
     {
         container:{
             flex: 1,
-            backgroundColor: "#191b1f",
+            backgroundColor: "#191919",
             
         },
         slider: {
             height: 0.61*height,
-            backgroundColor: "#191b1f",
+            backgroundColor: "#191919",
         },
         footer:{
             flex: 1,
-            backgroundColor: 'white',
+            backgroundColor: '#101214',
             borderTopRightRadius: 50,
             borderTopLeftRadius: 50
         },
@@ -77,21 +80,21 @@ const Tutorial = ({navigation}) => {
     const slideItems = [
         {
             text: 'Primer Slider',
-            img: CryptoLogo,
-            subTitle: 'Primer Slider',
-            description: 'Lorem ipsum'
+            img: messagesImg,
+            subTitle: 'Erhalte',
+            description: 'Benachrichtigungen'
         },
         {
             text: 'Segundo Slider',
-            img: CryptoLogo,
-            subTitle: 'Segundo Slider',
-            description: 'Lorem ipsum'
+            img: notificationsImg,
+            subTitle: 'Einfacher Zugang',
+            description: 'zu deinen Kursen'
         },
         {
             text: 'Tercer Slider',
-            img: CryptoLogo,
-            subTitle: 'Lorem ipsum',
-            description: 'Lorem ipsum'
+            img: communityImg,
+            subTitle: 'Sei ein Teil der',
+            description: 'CA Community'
         }
     ];
     //const x = useValue(0);

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { View, Dimensions, Pressable, Text, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
+import * as Progress from 'react-native-progress';
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,22 +18,24 @@ const Circle = (props)=> {
     const handdleWebView = (e)=>{
         setUrl(e.url);
     } 
+    const [load, setLoad] = useState(false);
+    const [progress, setProgress] = useState();
     return (
         <View
             style={{width, height, flex: 1}} 
-        >
+        >   
+            {load
+            ?null
+            :<Progress.Bar color='orange' borderWidth={0} progress={progress} width={null} />
+            }
             <WebView 
                 onNavigationStateChange={(e)=> handdleWebView(e)}
                 style={{width: width, height: height, zIndex: 0}} 
                 originWhitelist={['*']} 
-                source={{uri: url}} />
-            <Pressable 
-                onPress={() => handdleNav()}
-                style={style.floatingButton}>
-                <Text style={style.floatingText}>
-                    +
-                </Text>
-            </Pressable>
+                source={{uri: url}} 
+                onLoadProgress= {(e)=> setProgress(e.nativeEvent.progress)}    
+                onLoadEnd= {()=> setLoad(true)}
+            />
         </View>
     );
 }

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Dimensions, Pressable, Text, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
+import * as Progress from 'react-native-progress';
 
 const {width, height} = Dimensions.get('window');
 
@@ -8,21 +9,23 @@ const Kajabi = (props)=> {
     const handdleNav = () => {
         props.navigation.navigate('Home');
     }
+    const [load, setLoad] = useState(false);
+    const [progress, setProgress] = useState();
     return (
         <View
             style={{width, height, flex: 1}} 
         >
+            {load
+            ?null
+            :<Progress.Bar color='orange' borderWidth={0} progress={progress} width={null} />
+            }
             <WebView 
                 style={{width, height, zIndex: 0}} 
                 originWhitelist={['*']} 
-                source={{uri: 'https://id.kajabi.com/login?state=hKFo2SAxZmJQeGxtb3VQTVAyNlB6aC1KenQ0bjVEaFBOZ3VjeaFupWxvZ2luo3RpZNkgb0hqLUZYaUVMWXdNNzhWUFJwX1FMZzE0aHMxaWhBTlijY2lk2SBMS3hndExFUmVuS3NHbURPN2kwMEdnd0NuMTN6dEZUMA&client=LKxgtLERenKsGmDO7i00GgwCn13ztFT0&protocol=oauth2&leeway=60&nonce=1ef7073e72ba540d75d3f1cb94c84a51&redirect_uri=https%3A%2F%2Fapp.kajabi.com%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid%20profile%20email'}} />
-            <Pressable 
-                onPress={handdleNav}
-                style={style.floatingButton}>
-                <Text style={style.floatingText}>
-                    +
-                </Text>
-            </Pressable>
+                source={{uri: 'https://cryptochampion.coachy.net/anmelden/'}} 
+                onLoadProgress= {(e)=> setProgress(e.nativeEvent.progress)}    
+                onLoadEnd= {()=> setLoad(true)}
+            />
         </View>
     );
 }

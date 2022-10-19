@@ -11,15 +11,17 @@ const style = StyleSheet.create(
       padding: 24,
     },
     subTitle:{
-      color: 'black',
-      fontSize: 24,
-      lineHeight: 50,
+      color: 'white',
+      fontSize: 26,
+      lineHeight: 40,
       fontWeight: 'bold',
+      textTransform: 'uppercase'
     },
     description:{
-      color: '#191b1f80',
-      fontSize: 16,
-      fontWeight: 'normal'
+      color: '#EBA721',
+      fontSize: 26,
+      fontWeight: 'bold',
+      textTransform: 'uppercase'
     }
   }
 );
@@ -31,7 +33,7 @@ const SubSlide = ({subTitle, description, last, onPress, navigation}) => {
       <Text style={style.description}>{description}</Text>
       <Button 
         {...{navigation}}
-        label={last?"Let's get started":"Next"} 
+        label={last?"Let's get started":"Weiter"} 
         variant={last?"primary":"default"}
         onPress={onPress} 
       />

@@ -15,14 +15,15 @@ const style = StyleSheet.create(
             justifyContent: 'center',
             borderRadius: 50, 
             marginTop: 12,
-            borderWidth: 1
+            minWidth: 100,
+            borderWidth: 1,
         }
     }
 )
 
 const Button = (props) => {
-  const backgroundColor = props.variant === "primary" ? "#0e0f11":"transparent";  
-  const color = props.variant === "primary" ? "white":"#0e0f11";
+  const backgroundColor = props.variant === "primary" ? "white":"transparent";  
+  const color = props.variant === "primary" ? "#0e0f11":"white";
   const borderColor = props.variant === "primary"? "lightgray": "lightgray";
   const width = props.variant === "primary"? 150:60;
   const height = props.variant === "primary"? 60:60;

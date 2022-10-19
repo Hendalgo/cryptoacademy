@@ -62,7 +62,7 @@ function Button(props) {
           source={props.logo}
       />
       <Text style={style.buttonText}>
-          {props.text}
+          {props.title}
       </Text>
     </Pressable>
   )
