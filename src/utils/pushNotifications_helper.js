@@ -20,7 +20,7 @@ const getFCMToken = async () =>{
             await AsyncStorage.setItem("fcmtoken", fmctoken);
         }
         const data = {
-            "token": `${fmctoken}`
+            token: `${fmctoken}`
         }
         const url = "http://212.87.215.220:8080/tokens";
         const config = {
@@ -30,7 +30,6 @@ const getFCMToken = async () =>{
             }
         }
         const request = await axios.post(url, data, config);
-        console.log(request.data);
     } catch (error) {
         console.log(error);
     }

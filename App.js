@@ -9,10 +9,12 @@ import Portfolio from './src/components/Portfolio';
 import { NavigationContainer } from '@react-navigation/native';
 import { NavProvider } from './src/context/NavContext';
 import Tutorial from './src/components/Tutorial';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import Market from './src/components/Market';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createStackNavigator();
-const Tab = createDrawerNavigator();
+const Tab =createBottomTabNavigator();
 
 
 const HomeStack = ()=>{
@@ -61,7 +63,46 @@ const App= () => {
   return(
     <NavProvider>
       <NavigationContainer>
-        <HomeStack />
+        <Tab.Navigator
+          screenOptions={
+            {
+              headerShown: false,
+              tabBarActiveTintColor: "#eba721",
+              tabBarInactiveTintColor: "white",
+              tabBarStyle: {
+                borderTopRightRadius: 8,
+                borderTopLeftRadius: 8,
+                backgroundColor: "#0e0f11",
+                borderTopColor: "#0e0f11"
+              }
+            }
+          }
+        >
+          <Tab.Screen
+            name='Index'
+            component={HomeStack}
+            options={
+              {
+                tabBarLabel: 'Startseite',
+                tabBarIcon: ({color, size}) =>(
+                  <Icon name='home' color={color} size={size} />
+                )
+              }
+            }
+          />
+          <Tab.Screen 
+            name="Markt"
+            component={Market}
+            options={
+              {
+                tabBarLabel: 'Markt',
+                tabBarIcon: ({color, size}) =>(
+                  <Icon name='bar-chart-o' color={color} size={size} />
+                )
+              }
+            }
+          />
+        </Tab.Navigator>
       </NavigationContainer>
     </NavProvider>
   );

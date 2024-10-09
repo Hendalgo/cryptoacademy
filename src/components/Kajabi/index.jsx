@@ -17,7 +17,7 @@ const Kajabi = (props)=> {
         >
             {load
             ?null
-            :<Progress.Bar color='orange' borderWidth={0} progress={progress} width={null} />
+            :<Progress.Bar borderRadius={0} color='orange' borderWidth={0} progress={progress} width={null} />
             }
             <WebView 
                 style={{width, height, zIndex: 0}} 

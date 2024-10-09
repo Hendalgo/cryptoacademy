@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Alert } from 'react-native';
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -54,7 +54,6 @@ const Register = ({navigation}) => {
   const [error, setError] = React.useState({error: false});
   const [load, setLoad] = React.useState();
   const validate = (text) => {
-    console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(text) === false) {
       setError({
@@ -73,16 +72,32 @@ const Register = ({navigation}) => {
     try {
       setLoad(true);
       const trimedName = name?name.trim():null;
+      
       if (trimedName) {
         if (validate(email)){
           const user = {
             name,
             email
           };
+          const data = {
+              email: `${user.email}`
+          }
+          const url = "http://212.87.215.220:8080/email";
+          const config = {
+              timeout: 5000,
+              headers:{
+                  "Content-Type": "application/json",
+                  "Authorization": "Basic Y2tfZGQyZDlkYjY3NzJhZjAzMzVlYjA5Njc2YmY0N2U5NDgwZDkxOWNlMTpjc19hZWYyYzk4ZWI0ZGQ3YmY5NTcxNmJlYTMwNWZjOTI1MzdkNWMxNmQx"
+              }
+          }
+          const request = await axios.post(url, data, config);    
           await AsyncStorage.setItem("user", JSON.stringify(user));
+          console.log("Luego de la peticion");
+          setLoad(false);
+          
           navigation.reset(
             {
-                index: 1,
+                index: 0,
                 routes: [{name: 'Home'}]
             }
           )
@@ -119,7 +134,7 @@ const Register = ({navigation}) => {
         />
         {
           load
-          ?<Progress.Circle color='#EBA721' style={{alignSelf: 'center'}} indeterminate={true} />
+          ?<Progress.CircleSnail color='#EBA721' style={{alignSelf: 'center'}} indeterminate={true} />
           :<RectButton style={style.buttonContainer} onPress={saveUser}>
               <View style={style.button} >
                 <Text style={style.buttonText}>
